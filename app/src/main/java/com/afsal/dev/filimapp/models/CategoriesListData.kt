@@ -1,0 +1,1 @@
+package com.afsal.dev.filimapp.modelsdata class CategoriesListData(    val categoryName:String,    val categoryId:String,    val movies:List<MovieItem>)

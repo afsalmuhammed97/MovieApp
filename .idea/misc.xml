@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/FilimApp/app/src/main/res/drawable/tittle_bg.xml" value="0.1" />
         <entry key="..\:/FilimApp/app/src/main/res/layout/activity_main.xml" value="0.19583333333333333" />
         <entry key="..\:/FilimApp/app/src/main/res/layout/base_rv_item.xml" value="0.19583333333333333" />
         <entry key="..\:/FilimApp/app/src/main/res/layout/catagoray_item.xml" value="0.19583333333333333" />

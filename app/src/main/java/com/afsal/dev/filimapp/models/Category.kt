@@ -1,0 +1,1 @@
+package com.afsal.dev.filimapp.modelsclass Category : ArrayList<CategoryItem>()

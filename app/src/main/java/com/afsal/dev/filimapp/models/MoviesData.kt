@@ -1,1 +1,1 @@
-package com.afsal.dev.filimapp.modelsclass MoviesData : ArrayList<MoviesDataItem>()
+package com.afsal.dev.filimapp.modelsclass MoviesData : ArrayList<MovieItem>()

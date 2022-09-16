@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.get
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.afsal.dev.filimapp.R
 import com.afsal.dev.filimapp.adapters.CatagoryMoviesAdapter
@@ -41,30 +42,20 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         latestMoviesAdapter= LatestMoviesAdapter()
-        catagoryAdapter= CatagoryMoviesAdapter()
-          setView()
+        catagoryAdapter= CatagoryMoviesAdapter(){
 
+            navigateToMoveFragment()
+        }
+          setView()
+         binding.moreBt1.setOnClickListener { navigateToMoveFragment() }
 
 
         viewModel.categoryList.observe(viewLifecycleOwner, Observer {
-          //  Log.d("TTT","Catagory list ${it.toString()}")
+            Log.d("TTT","Catagory result ${it}") })
 
-            when(it){
-                is Resource.Success ->{
+        viewModel.sortedMoviesData.observe(viewLifecycleOwner, Observer {
 
-                    val data=it.value.message()
-                   Log.d("TTTT"," result code${it.value.code()}")
-                   Log.d("TTTT","success result ${data.toString()}")
-                }
-
-                is Resource.Failure ->{
-
-                          handleApiError(it)
-
-
-                }
-
-            }
+            catagoryAdapter.differ.submitList(it)
         })
 
     }
@@ -82,6 +73,9 @@ class HomeFragment : Fragment() {
         }
     }
 
+    private fun navigateToMoveFragment(){
+        findNavController().navigate(R.id.action_homeFragment_to_moviesFragment)
+    }
 
     override fun onDestroy() {
         super.onDestroy()
