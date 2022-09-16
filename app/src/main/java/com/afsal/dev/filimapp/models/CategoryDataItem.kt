@@ -1,0 +1,1 @@
+package com.afsal.dev.filimapp.modelsdata class CategoryDataItem(    val category_id: String,    val category_name: String,    val parent_id: Int)
