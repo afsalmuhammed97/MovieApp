@@ -31,7 +31,8 @@ class MainActivity : AppCompatActivity() {
         val navController=navHostFragment.navController
 
         setupActionBarWithNavController(navController)
-        binding.toolbar2.title = customTittleText()
+        supportActionBar?.title=customTittleText()
+       // binding.toolbar2.title =
 
     }
 

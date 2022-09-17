@@ -15,6 +15,7 @@ import com.afsal.dev.filimapp.R
 import com.afsal.dev.filimapp.adapters.CatagoryMoviesAdapter
 import com.afsal.dev.filimapp.adapters.LatestMoviesAdapter
 import com.afsal.dev.filimapp.databinding.FragmentHomeBinding
+import com.afsal.dev.filimapp.models.CategoriesListData
 import com.afsal.dev.filimapp.network.Resource
 import com.afsal.dev.filimapp.viewModel.MoviesViewModel
 import com.afsal.dev.typicodapp.uttil.handleApiError
@@ -44,10 +45,13 @@ class HomeFragment : Fragment() {
         latestMoviesAdapter= LatestMoviesAdapter()
         catagoryAdapter= CatagoryMoviesAdapter(){
 
-            navigateToMoveFragment()
+                  Log.d("HHH","list of data ${it.categoryName}")
+          ////////////////  navigateToMoveFragment()
         }
           setView()
-         binding.moreBt1.setOnClickListener { navigateToMoveFragment() }
+         binding.moreBt1.setOnClickListener {
+             //navigateToMoveFragment()
+             }
 
 
         viewModel.categoryList.observe(viewLifecycleOwner, Observer {
@@ -55,6 +59,7 @@ class HomeFragment : Fragment() {
 
         viewModel.sortedMoviesData.observe(viewLifecycleOwner, Observer {
 
+            Log.d("GGGG","sorted result ${it.toString()}")
             catagoryAdapter.differ.submitList(it)
         })
 
@@ -64,17 +69,25 @@ class HomeFragment : Fragment() {
         binding.topRv.apply {
              layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
             adapter=latestMoviesAdapter
+            setHasFixedSize(true)
+            setItemViewCacheSize(8)
         }
 
 
         binding.baseRv.apply {
             layoutManager=LinearLayoutManager(context)
             adapter=catagoryAdapter
+
+            setItemViewCacheSize(10)
         }
     }
 
-    private fun navigateToMoveFragment(){
-        findNavController().navigate(R.id.action_homeFragment_to_moviesFragment)
+    private fun navigateToMoveFragment(data :CategoriesListData){
+
+
+      //   val action= MoviesFragmentDirections.actionNavigationImagesToImageViewFragment(data)
+//      findNavController().navigate(action)
+      //  findNavController().navigate()
     }
 
     override fun onDestroy() {

@@ -4,8 +4,14 @@
 buildscript {
     ext.hilt_version = '2.42'
     dependencies {
+        repositories {
+            google()
+        }
 
         classpath "com.google.dagger:hilt-android-gradle-plugin:$hilt_version"
+
+        def nav_version = "2.3.0-alpha04"
+        classpath "androidx.navigation:navigation-safe-args-gradle-plugin:$nav_version"
     }
 }
 
